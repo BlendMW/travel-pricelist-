@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>رحلات شركة الحياة</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap" rel="stylesheet">
-   
-</head>
-<body>
-     <style>
+    <style>
         body, html {
             margin: 0;
             padding: 0;
@@ -59,6 +56,8 @@
             }
         }
     </style>
+</head>
+<body>
     <header>رحلات شركة الحياة</header>
     <div class="tab-container">
         <div class="tab" onclick="navigateToSheet('993672713')">Baku ( IA + UR )</div>
@@ -77,21 +76,22 @@
             const iframe = document.getElementById('sheetFrame');
             iframe.src = `${baseUrl}&gid=${sheetId}`;
             iframe.onload = () => {
-                const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-                const style = document.createElement('style');
-                style.textContent = "body { font-family: 'Cairo', sans-serif !important; }";
-                iframeDocument.head.appendChild(style);
+                applyCairoFontToIframe(iframe);
             };
+        }
+
+        function applyCairoFontToIframe(iframe) {
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            const style = document.createElement('style');
+            style.textContent = "@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap'); body { font-family: 'Cairo', sans-serif !important; }";
+            iframeDocument.head.appendChild(style);
         }
 
         // Initial load to ensure the font is applied correctly
         document.addEventListener('DOMContentLoaded', () => {
             const iframe = document.getElementById('sheetFrame');
             iframe.onload = () => {
-                const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-                const style = document.createElement('style');
-                style.textContent = "body { font-family: 'Cairo', sans-serif !important; }";
-                iframeDocument.head.appendChild(style);
+                applyCairoFontToIframe(iframe);
             };
         });
     </script>
