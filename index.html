@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>رحلات شركة الحياة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap'); /* Example for multiple fonts */
+        
         body, html {
             margin: 0;
             padding: 0;
@@ -79,26 +81,35 @@
             const iframe = document.getElementById('sheetFrame');
             iframe.src = `${baseUrl}&gid=${sheetId}`;
             iframe.onload = () => {
-                applyCairoFontToIframe(iframe);
+                applyFontsToIframe(iframe);
             };
         }
 
-        function applyCairoFontToIframe(iframe) {
+        function applyFontsToIframe(iframe) {
             const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-            const styleLink = document.createElement('link');
-            styleLink.rel = 'stylesheet';
-            styleLink.href = 'https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap';
+            const styleLink1 = document.createElement('link');
+            styleLink1.rel = 'stylesheet';
+            styleLink1.href = 'https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap';
+            const styleLink2 = document.createElement('link');
+            styleLink2.rel = 'stylesheet';
+            styleLink2.href = 'https://fonts.googleapis.com/css2?family=Amiri&display=swap';
+            
+            iframeDocument.head.appendChild(styleLink1);
+            iframeDocument.head.appendChild(styleLink2);
+
             const style = document.createElement('style');
-            style.textContent = "body { font-family: 'Cairo', sans-serif !important; }";
-            iframeDocument.head.appendChild(styleLink);
+            style.textContent = `
+                body { font-family: 'Cairo', sans-serif !important; }
+                .amiri-font { font-family: 'Amiri', serif; }
+            `;
             iframeDocument.head.appendChild(style);
         }
 
-        // Initial load to ensure the font is applied correctly
+        // Initial load to ensure the fonts are applied correctly
         document.addEventListener('DOMContentLoaded', () => {
             const iframe = document.getElementById('sheetFrame');
             iframe.onload = () => {
-                applyCairoFontToIframe(iframe);
+                applyFontsToIframe(iframe);
             };
         });
     </script>
