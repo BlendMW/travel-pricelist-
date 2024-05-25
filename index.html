@@ -41,38 +41,24 @@
         .tab:hover {
             background-color: #45a049;
         }
-        #dataContainer {
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        iframe {
+            border: none;
+            width: 100%;
+            height: calc(100vh - 100px); /* Adjusted for better mobile view */
+        }
+        @media (max-width: 768px) {
+            header {
+                font-size: 20px;
+            }
+            .tab {
+                font-size: 16px;
+                padding: 8px 16px;
+            }
+            iframe {
+                height: calc(100vh - 120px);
+            }
         }
     </style>
-    <script>
-        async function fetchSheetData(sheetId) {
-            const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=YOUR_API_KEY`);
-            const data = await response.json();
-            renderSheetData(data.values);
-        }
-
-        function renderSheetData(data) {
-            const container = document.getElementById('dataContainer');
-            let html = '<table>';
-            data.forEach(row => {
-                html += '<tr>';
-                row.forEach(cell => {
-                    html += `<td>${cell}</td>`;
-                });
-                html += '</tr>';
-            });
-            html += '</table>';
-            container.innerHTML = html;
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchSheetData('YOUR_SHEET_ID');
-        });
-    </script>
 </head>
 <body>
     <header>رحلات شركة الحياة</header>
@@ -92,6 +78,17 @@
             const baseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false&chrome=false";
             document.getElementById('sheetFrame').src = `${baseUrl}&gid=${sheetId}`;
         }
+
+        // Initial load to ensure the font is applied correctly
+        document.addEventListener('DOMContentLoaded', () => {
+            const iframe = document.getElementById('sheetFrame');
+            iframe.onload = () => {
+                const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+                const style = document.createElement('style');
+                style.textContent = "@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap'); body { font-family: 'Cairo', sans-serif !important; }";
+                iframeDocument.head.appendChild(style);
+            };
+        });
     </script>
 </body>
 </html>
