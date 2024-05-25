@@ -41,19 +41,10 @@
         .tab:hover {
             background-color: #45a049;
         }
-        .content {
-            padding: 20px;
-        }
-        table {
+        iframe {
+            border: none;
             width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
+            height: calc(100vh - 100px); /* Adjusted for better mobile view */
         }
         @media (max-width: 768px) {
             header {
@@ -69,39 +60,20 @@
 <body>
     <header>رحلات شركة الحياة</header>
     <div class="tab-container">
-        <div class="tab" onclick="loadSheet('1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms', '993672713')">Baku ( IA + UR )</div>
-        <div class="tab" onclick="loadSheet('1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms', '1574051552')">Istanbul TEQ ( IA - Charter )</div>
-        <div class="tab" onclick="loadSheet('1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms', '2106198068')">Trabzon ( IA - Charter )</div>
-        <div class="tab" onclick="loadSheet('1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms', '193116601')">Antalya ( UR )</div>
-        <div class="tab" onclick="loadSheet('1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms', '167572713')">East Asia ( IA )</div>
-        <div class="tab" onclick="loadSheet('1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms', '1521088762')">Sharm ( IA - Charter )</div>
-        <div class="tab" onclick="loadSheet('1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms', '1814443105')">Cairo ( MS )</div>
+        <div class="tab" onclick="navigateToSheet('993672713')">Baku ( IA + UR )</div>
+        <div class="tab" onclick="navigateToSheet('1574051552')">Istanbul TEQ ( IA - Charter )</div>
+        <div class="tab" onclick="navigateToSheet('2106198068')">Trabzon ( IA - Charter )</div>
+        <div class="tab" onclick="navigateToSheet('193116601')">Antalya ( UR )</div>
+        <div class="tab" onclick="navigateToSheet('167572713')">East Asia ( IA )</div>
+        <div class="tab" onclick="navigateToSheet('1521088762')">Sharm ( IA - Charter )</div>
+        <div class="tab" onclick="navigateToSheet('1814443105')">Cairo ( MS )</div>
     </div>
-    <div class="content" id="content"></div>
+    <iframe id="sheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false&chrome=false&gid=993672713"></iframe>
 
     <script>
-        async function loadSheet(sheetId) {
-            const apiKey = 'AIzaSyCy0XtVrRpaecHOQMouNtimUSp4Q_-gy0Q';
-            const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=${apiKey}`;
-            const response = await fetch(url);
-            const data = await response.json();
-            renderData(data.values);
-        }
-
-        function renderData(data) {
-            const content = document.getElementById('content');
-            content.innerHTML = '';
-            const table = document.createElement('table');
-            data.forEach((row, rowIndex) => {
-                const tr = document.createElement('tr');
-                row.forEach(cell => {
-                    const cellElement = rowIndex === 0 ? document.createElement('th') : document.createElement('td');
-                    cellElement.textContent = cell;
-                    tr.appendChild(cellElement);
-                });
-                table.appendChild(tr);
-            });
-            content.appendChild(table);
+        function navigateToSheet(gid) {
+            const baseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false&chrome=false";
+            document.getElementById('sheetFrame').src = `${baseUrl}&gid=${gid}`;
         }
     </script>
 </body>
