@@ -55,40 +55,6 @@
                 padding: 8px 16px;
             }
         }
-        .note {
-            position: relative;
-            display: inline-block;
-        }
-        .note .note-text {
-            visibility: hidden;
-            width: 120px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px 0;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -60px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .note .note-text::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #555 transparent transparent transparent;
-        }
-        .note:hover .note-text {
-            visibility: visible;
-            opacity: 1;
-        }
     </style>
 </head>
 <body>
@@ -109,20 +75,6 @@
             const baseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false&chrome=false";
             document.getElementById('sheetFrame').src = `${baseUrl}&gid=${sheetId}`;
         }
-
-        // Add hover effect to display notes in Google Sheets iframe
-        document.getElementById('sheetFrame').addEventListener('load', function () {
-            const iframeDocument = document.getElementById('sheetFrame').contentDocument || document.getElementById('sheetFrame').contentWindow.document;
-            const noteCells = iframeDocument.querySelectorAll('[aria-label*="Note"]');
-            noteCells.forEach(cell => {
-                const noteText = cell.getAttribute('aria-label');
-                const span = document.createElement('span');
-                span.className = 'note-text';
-                span.textContent = noteText;
-                cell.classList.add('note');
-                cell.appendChild(span);
-            });
-        });
     </script>
 </body>
 </html>
