@@ -85,14 +85,9 @@
 
         function applyFontsToIframe(iframe) {
             const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-            const styleLink = document.createElement('link');
-            styleLink.rel = 'stylesheet';
-            styleLink.href = 'https://fonts.googleapis.com/css2?family=Cairo:wght@400&family=Amiri&display=swap';
-            
-            iframeDocument.head.appendChild(styleLink);
-
             const style = document.createElement('style');
             style.textContent = `
+                @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400&family=Amiri&display=swap');
                 body { font-family: 'Cairo', sans-serif !important; }
                 .amiri-font { font-family: 'Amiri', serif !important; }
             `;
