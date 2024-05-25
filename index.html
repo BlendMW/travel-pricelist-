@@ -112,15 +112,15 @@
 
         // Add hover effect to display notes in Google Sheets iframe
         document.getElementById('sheetFrame').addEventListener('load', function () {
-            const iframe = document.getElementById('sheetFrame').contentWindow.document;
-            const notes = iframe.querySelectorAll('[aria-label*="Note"]');
-            notes.forEach(note => {
-                const noteText = note.getAttribute('aria-label');
-                note.classList.add('note');
+            const iframeDocument = document.getElementById('sheetFrame').contentDocument || document.getElementById('sheetFrame').contentWindow.document;
+            const noteCells = iframeDocument.querySelectorAll('[aria-label*="Note"]');
+            noteCells.forEach(cell => {
+                const noteText = cell.getAttribute('aria-label');
                 const span = document.createElement('span');
-                span.classList.add('note-text');
+                span.className = 'note-text';
                 span.textContent = noteText;
-                note.appendChild(span);
+                cell.classList.add('note');
+                cell.appendChild(span);
             });
         });
     </script>
