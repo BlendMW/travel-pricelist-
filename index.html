@@ -82,8 +82,12 @@
 
         function applyCairoFontToIframe(iframe) {
             const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            const styleLink = document.createElement('link');
+            styleLink.rel = 'stylesheet';
+            styleLink.href = 'https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap';
             const style = document.createElement('style');
-            style.textContent = "@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap'); body { font-family: 'Cairo', sans-serif !important; }";
+            style.textContent = "body { font-family: 'Cairo', sans-serif !important; }";
+            iframeDocument.head.appendChild(styleLink);
             iframeDocument.head.appendChild(style);
         }
 
