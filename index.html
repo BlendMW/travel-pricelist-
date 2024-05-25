@@ -50,11 +50,12 @@
 <body>
     <header>رحلات شركة الحياة</header>
     <div class="tab-container">
-        <!-- Add buttons for each sheet tab here -->
-        <div class="tab" onclick="navigateToSheet('0')">جدول الأسعار</div>
-        <!-- Add more tabs if needed -->
+        <!-- Buttons for each sheet tab -->
+        <div class="tab" onclick="navigateToSheet('1234567890')">Sheet 2</div>
+        <div class="tab" onclick="navigateToSheet('987654321')">Sheet 3</div>
+        <!-- Add more buttons as needed -->
     </div>
-    <iframe id="sheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false&chrome=false"></iframe>
+    <iframe id="sheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false&chrome=false&gid=0"></iframe>
 
     <script>
         function navigateToSheet(sheetId) {
