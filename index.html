@@ -21,7 +21,6 @@
             text-align: center;
             font-size: 24px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            font-family: 'Cairo', sans-serif;
         }
         .tab-container {
             display: flex;
@@ -38,7 +37,6 @@
             cursor: pointer;
             font-size: 18px;
             transition: background-color 0.3s;
-            font-family: 'Cairo', sans-serif;
         }
         .tab:hover {
             background-color: #45a049;
@@ -47,7 +45,6 @@
             border: none;
             width: 100%;
             height: calc(100vh - 100px); /* Adjusted for better mobile view */
-            font-family: 'Cairo', sans-serif;
         }
         @media (max-width: 768px) {
             header {
@@ -76,8 +73,26 @@
     <script>
         function navigateToSheet(sheetId) {
             const baseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false&chrome=false";
-            document.getElementById('sheetFrame').src = `${baseUrl}&gid=${sheetId}`;
+            const iframe = document.getElementById('sheetFrame');
+            iframe.src = `${baseUrl}&gid=${sheetId}`;
+            iframe.onload = () => {
+                const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+                const style = document.createElement('style');
+                style.textContent = "body { font-family: 'Cairo', sans-serif !important; }";
+                iframeDocument.head.appendChild(style);
+            };
         }
+
+        // Initial load to ensure the font is applied correctly
+        document.addEventListener('DOMContentLoaded', () => {
+            const iframe = document.getElementById('sheetFrame');
+            iframe.onload = () => {
+                const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+                const style = document.createElement('style');
+                style.textContent = "body { font-family: 'Cairo', sans-serif !important; }";
+                iframeDocument.head.appendChild(style);
+            };
+        });
     </script>
 </body>
 </html>
