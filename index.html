@@ -26,10 +26,11 @@
             display: flex;
             justify-content: center;
             margin: 20px 0;
+            flex-wrap: wrap;
         }
         .tab {
             padding: 10px 20px;
-            margin: 0 5px;
+            margin: 5px;
             background-color: #4CAF50;
             color: white;
             border-radius: 5px;
@@ -51,17 +52,13 @@
     <header>رحلات شركة الحياة</header>
     <div class="tab-container">
         <!-- Buttons for each sheet tab -->
-        <div class="tab" onclick="navigateToSheet('1234567890')">Sheet 2</div>
-        <div class="tab" onclick="navigateToSheet('987654321')">Sheet 3</div>
+        <div class="tab" onclick="navigateToSheet('0')">Baku ( UR )ر</div>
+        <div class="tab" onclick="navigateToSheet('1234567890')">جدول آخر</div>
+        <div class="tab" onclick="navigateToSheet('987654321')">جدول ثالث</div>
         <!-- Add more buttons as needed -->
     </div>
     <iframe id="sheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false&chrome=false&gid=0"></iframe>
 
     <script>
         function navigateToSheet(sheetId) {
-            const baseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false&chrome=false";
-            document.getElementById('sheetFrame').src = `${baseUrl}&gid=${sheetId}`;
-        }
-    </script>
-</body>
-</html>
+            const baseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2
