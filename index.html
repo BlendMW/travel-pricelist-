@@ -44,14 +44,56 @@
         iframe {
             border: none;
             width: 100%;
-            height: calc(100vh - 60px);
+            height: calc(100vh - 100px); /* Adjusted for better mobile view */
+        }
+        @media (max-width: 768px) {
+            header {
+                font-size: 20px;
+            }
+            .tab {
+                font-size: 16px;
+                padding: 8px 16px;
+            }
+        }
+        .note {
+            position: relative;
+            display: inline-block;
+        }
+        .note .note-text {
+            visibility: hidden;
+            width: 120px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .note .note-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+        .note:hover .note-text {
+            visibility: visible;
+            opacity: 1;
         }
     </style>
 </head>
 <body>
     <header>رحلات شركة الحياة</header>
     <div class="tab-container">
-        <!-- Buttons for each sheet tab -->
         <div class="tab" onclick="navigateToSheet('993672713')">Baku ( IA + UR )</div>
         <div class="tab" onclick="navigateToSheet('1574051552')">Istanbul TEQ ( IA - Charter )</div>
         <div class="tab" onclick="navigateToSheet('2106198068')">Trabzon ( IA - Charter )</div>
@@ -59,7 +101,6 @@
         <div class="tab" onclick="navigateToSheet('167572713')">East Asia ( IA )</div>
         <div class="tab" onclick="navigateToSheet('1521088762')">Sharm ( IA - Charter )</div>
         <div class="tab" onclick="navigateToSheet('1814443105')">Cairo ( MS )</div>
-        <!-- Add more buttons as needed -->
     </div>
     <iframe id="sheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false&chrome=false&gid=993672713"></iframe>
 
@@ -68,6 +109,20 @@
             const baseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false&chrome=false";
             document.getElementById('sheetFrame').src = `${baseUrl}&gid=${sheetId}`;
         }
+
+        // Add hover effect to display notes in Google Sheets iframe
+        document.getElementById('sheetFrame').addEventListener('load', function () {
+            const iframe = document.getElementById('sheetFrame').contentWindow.document;
+            const notes = iframe.querySelectorAll('[aria-label*="Note"]');
+            notes.forEach(note => {
+                const noteText = note.getAttribute('aria-label');
+                note.classList.add('note');
+                const span = document.createElement('span');
+                span.classList.add('note-text');
+                span.textContent = noteText;
+                note.appendChild(span);
+            });
+        });
     </script>
 </body>
 </html>
