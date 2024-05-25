@@ -41,21 +41,38 @@
         .tab:hover {
             background-color: #45a049;
         }
-        iframe {
-            border: none;
-            width: 100%;
-            height: calc(100vh - 100px); /* Adjusted for better mobile view */
-        }
-        @media (max-width: 768px) {
-            header {
-                font-size: 20px;
-            }
-            .tab {
-                font-size: 16px;
-                padding: 8px 16px;
-            }
+        #dataContainer {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
     </style>
+    <script>
+        async function fetchSheetData(sheetId) {
+            const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=YOUR_API_KEY`);
+            const data = await response.json();
+            renderSheetData(data.values);
+        }
+
+        function renderSheetData(data) {
+            const container = document.getElementById('dataContainer');
+            let html = '<table>';
+            data.forEach(row => {
+                html += '<tr>';
+                row.forEach(cell => {
+                    html += `<td>${cell}</td>`;
+                });
+                html += '</tr>';
+            });
+            html += '</table>';
+            container.innerHTML = html;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchSheetData('YOUR_SHEET_ID');
+        });
+    </script>
 </head>
 <body>
     <header>رحلات شركة الحياة</header>
