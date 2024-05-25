@@ -22,11 +22,6 @@
             font-size: 24px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        iframe {
-            border: none;
-            width: 100%;
-            height: calc(100vh - 60px);
-        }
         .tab-container {
             display: flex;
             justify-content: center;
@@ -45,19 +40,26 @@
         .tab:hover {
             background-color: #45a049;
         }
+        iframe {
+            border: none;
+            width: 100%;
+            height: calc(100vh - 60px);
+        }
     </style>
 </head>
 <body>
     <header>رحلات شركة الحياة</header>
     <div class="tab-container">
-        <div class="tab" onclick="navigateToSheet('https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?gid=0&single=true')">جدول الأسعار</div>
+        <!-- Add buttons for each sheet tab here -->
+        <div class="tab" onclick="navigateToSheet('0')">جدول الأسعار</div>
         <!-- Add more tabs if needed -->
     </div>
-    <iframe id="sheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false"></iframe>
+    <iframe id="sheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false&chrome=false"></iframe>
 
     <script>
-        function navigateToSheet(url) {
-            document.getElementById('sheetFrame').src = url;
+        function navigateToSheet(sheetId) {
+            const baseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false&chrome=false";
+            document.getElementById('sheetFrame').src = `${baseUrl}&gid=${sheetId}`;
         }
     </script>
 </body>
