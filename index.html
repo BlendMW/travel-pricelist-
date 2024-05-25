@@ -51,21 +51,19 @@
 <body>
     <header>رحلات شركة الحياة</header>
     <div class="tab-container">
-        <!-- Buttons for each sheet tab -->
         <div class="tab" onclick="navigateToSheet('993672713')">Baku ( IA + UR )</div>
-        <div class="tab" onclick="navigateToSheet('1574051552')">Istanbul TEQ ( IA - Charter ) </div>
-        <div class="tab" onclick="navigateToSheet('2106198068')">Trabzon ( IA - Charter ) </div>
-        <div class="tab" onclick="navigateToSheet('193116601')">Antalya ( UR ) </div>
+        <div class="tab" onclick="navigateToSheet('1574051552')">Istanbul TEQ ( IA - Charter )</div>
+        <div class="tab" onclick="navigateToSheet('2106198068')">Trabzon ( IA - Charter )</div>
+        <div class="tab" onclick="navigateToSheet('193116601')">Antalya ( UR )</div>
         <div class="tab" onclick="navigateToSheet('167572713')">East Asia ( IA )</div>
         <div class="tab" onclick="navigateToSheet('1521088762')">Sharm ( IA - Charter )</div>
         <div class="tab" onclick="navigateToSheet('1814443105')">Cairo ( MS )</div>
-        <!-- Add more buttons as needed -->
     </div>
-    <iframe id="sheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false&chrome=false&gid=993672713"></iframe>
+    <iframe id="sheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&amp;headers=false&amp;chrome=false&amp;gid=993672713"></iframe>
 
     <script>
         function navigateToSheet(sheetId) {
-            const baseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false&chrome=false";
+            const baseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&amp;headers=false&amp;chrome=false";
             document.getElementById('sheetFrame').src = `${baseUrl}&gid=${sheetId}`;
         }
     </script>
