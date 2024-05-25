@@ -44,6 +44,17 @@
         .content {
             padding: 20px;
         }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
         @media (max-width: 768px) {
             header {
                 font-size: 20px;
@@ -58,19 +69,19 @@
 <body>
     <header>رحلات شركة الحياة</header>
     <div class="tab-container">
-        <div class="tab" onclick="loadSheet('1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms')">Baku ( IA + UR )</div>
-        <div class="tab" onclick="loadSheet('1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms')">Istanbul TEQ ( IA - Charter )</div>
-        <div class="tab" onclick="loadSheet('1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms')">Trabzon ( IA - Charter )</div>
-        <div class="tab" onclick="loadSheet('1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms')">Antalya ( UR )</div>
-        <div class="tab" onclick="loadSheet('1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms')">East Asia ( IA )</div>
-        <div class="tab" onclick="loadSheet('1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms')">Sharm ( IA - Charter )</div>
-        <div class="tab" onclick="loadSheet('1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms')">Cairo ( MS )</div>
+        <div class="tab" onclick="loadSheet('YOUR_SHEET_ID_HERE')">Baku ( IA + UR )</div>
+        <div class="tab" onclick="loadSheet('YOUR_SHEET_ID_HERE')">Istanbul TEQ ( IA - Charter )</div>
+        <div class="tab" onclick="loadSheet('YOUR_SHEET_ID_HERE')">Trabzon ( IA - Charter )</div>
+        <div class="tab" onclick="loadSheet('YOUR_SHEET_ID_HERE')">Antalya ( UR )</div>
+        <div class="tab" onclick="loadSheet('YOUR_SHEET_ID_HERE')">East Asia ( IA )</div>
+        <div class="tab" onclick="loadSheet('YOUR_SHEET_ID_HERE')">Sharm ( IA - Charter )</div>
+        <div class="tab" onclick="loadSheet('YOUR_SHEET_ID_HERE')">Cairo ( MS )</div>
     </div>
     <div class="content" id="content"></div>
 
     <script>
         async function loadSheet(sheetId) {
-            const apiKey = 'YOUR_API_KEY';
+            const apiKey = 'AIzaSyCy0XtVrRpaecHOQMouNtimUSp4Q_-gy0Q';
             const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=${apiKey}`;
             const response = await fetch(url);
             const data = await response.json();
@@ -81,12 +92,12 @@
             const content = document.getElementById('content');
             content.innerHTML = '';
             const table = document.createElement('table');
-            data.forEach(row => {
+            data.forEach((row, rowIndex) => {
                 const tr = document.createElement('tr');
                 row.forEach(cell => {
-                    const td = document.createElement('td');
-                    td.textContent = cell;
-                    tr.appendChild(td);
+                    const cellElement = rowIndex === 0 ? document.createElement('th') : document.createElement('td');
+                    cellElement.textContent = cell;
+                    tr.appendChild(cellElement);
                 });
                 table.appendChild(tr);
             });
