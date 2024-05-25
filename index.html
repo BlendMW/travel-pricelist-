@@ -75,17 +75,6 @@
             const baseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false&chrome=false";
             document.getElementById('sheetFrame').src = `${baseUrl}&gid=${sheetId}`;
         }
-
-        // Initial load to ensure the font is applied correctly
-        document.addEventListener('DOMContentLoaded', () => {
-            const iframe = document.getElementById('sheetFrame');
-            iframe.onload = () => {
-                const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-                const style = document.createElement('style');
-                style.textContent = "body { font-family: 'Cairo', sans-serif !important; }";
-                iframeDocument.head.appendChild(style);
-            };
-        });
     </script>
 </body>
 </html>
