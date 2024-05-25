@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>رحلات شركة الحياة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            font-family: Arial, sans-serif;
+            font-family: 'Cairo', sans-serif;
             background-color: #f4f4f4;
         }
         header {
             background-color: #4CAF50;
             color: white;
-            padding: 10px 0;
+            padding: 15px 0;
             text-align: center;
             font-size: 24px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -26,10 +27,38 @@
             width: 100%;
             height: calc(100vh - 60px);
         }
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .tab {
+            padding: 10px 20px;
+            margin: 0 5px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        .tab:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
     <header>رحلات شركة الحياة</header>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&amp;headers=false"></iframe>
+    <div class="tab-container">
+        <div class="tab" onclick="navigateToSheet('https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?gid=0&single=true')">جدول الأسعار</div>
+        <!-- Add more tabs if needed -->
+    </div>
+    <iframe id="sheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false"></iframe>
+
+    <script>
+        function navigateToSheet(url) {
+            document.getElementById('sheetFrame').src = url;
+        }
+    </script>
 </body>
 </html>
