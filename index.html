@@ -67,6 +67,19 @@
             const baseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&amp;headers=false&amp;chrome=false";
             document.getElementById('sheetFrame').src = `${baseUrl}&gid=${sheetId}`;
         }
+
+        document.getElementById('sheetFrame').onload = function() {
+            const iframe = document.getElementById('sheetFrame');
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap');
+                body {
+                    font-family: 'Cairo', sans-serif;
+                }
+            `;
+            doc.head.appendChild(style);
+        }
     </script>
 </body>
 </html>
