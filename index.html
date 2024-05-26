@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>رحلات شركة الحياة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400&family=Amiri&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
@@ -13,6 +13,7 @@
             height: 100%;
             font-family: 'Cairo', sans-serif;
             background-color: #f4f4f4;
+            direction: rtl;
         }
         header {
             background-color: #4CAF50;
@@ -44,19 +45,7 @@
         iframe {
             border: none;
             width: 100%;
-            height: calc(100vh - 100px);
-        }
-        @media (max-width: 768px) {
-            header {
-                font-size: 20px;
-            }
-            .tab {
-                font-size: 16px;
-                padding: 8px 16px;
-            }
-            iframe {
-                height: calc(100vh - 120px);
-            }
+            height: calc(100vh - 60px);
         }
     </style>
 </head>
@@ -71,27 +60,13 @@
         <div class="tab" onclick="navigateToSheet('1521088762')">Sharm ( IA - Charter )</div>
         <div class="tab" onclick="navigateToSheet('1814443105')">Cairo ( MS )</div>
     </div>
-    <iframe id="sheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false&chrome=false&gid=993672713"></iframe>
+    <iframe id="sheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&amp;headers=false&amp;chrome=false&amp;gid=993672713"></iframe>
 
     <script>
         function navigateToSheet(sheetId) {
-            const baseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&headers=false&chrome=false";
+            const baseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZQHQlQZH-UrtQLCxPybVldK3ehlY26Gi2tQKZY7F5zJx8TP2JBqSO7gNvU9Pw8noPquFd7piGba4D/pubhtml?widget=true&amp;headers=false&amp;chrome=false";
             document.getElementById('sheetFrame').src = `${baseUrl}&gid=${sheetId}`;
         }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const iframe = document.getElementById('sheetFrame');
-            iframe.onload = () => {
-                const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-                const style = document.createElement('style');
-                style.textContent = `
-                    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400&family=Amiri&display=swap');
-                    body { font-family: 'Cairo', sans-serif !important; }
-                    .amiri-font { font-family: 'Amiri', serif !important; }
-                `;
-                iframeDocument.head.appendChild(style);
-            };
-        });
     </script>
 </body>
 </html>
